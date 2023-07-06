@@ -1,24 +1,34 @@
 #!/usr/bin/env python
 
-# In[1]:
+# Import the programs to use
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import matplotlib.pyplot
-# In[2]:
-filename = "regrex1.csv"
-# In[3]:
+import sys 
+
+# Assign the csv a variable
+filename = sys.argv[1]
+
+# Read the variable
 dataset = pd.read_csv(filename)
-# In[4]:
+
+# Visualize the raw data
+plt.scatter(dataset[['x']], dataset[['y']], color = 'red')
+plt.title('y vs x')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.savefig("python_scatter_plot.png")
+
+# Build the module
 model = LinearRegression()
-# In[5]:
 model.fit(dataset[['x']], dataset[['y']])
-# In[6]:
+
+# Visualize the module
 plt.scatter(dataset[['x']], dataset[['y']], color = 'red')
 plt.plot(dataset[['x']], model.predict(dataset[['x']]), color = 'blue')
 plt.title('y vs x')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
-# In[7]:
-plt.savefig("python_combined.png")
+plt.savefig("python_linearregression_model.png")
